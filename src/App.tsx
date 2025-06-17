@@ -93,17 +93,17 @@ function App() {
     setResult(null);
     
     try {
+      // Convert file to base64
       const base64Resume = await convertFileToBase64(file);
+      
+      // Create FormData and append the base64 string and job description
+      const formData = new FormData();
+      formData.append('resume', base64Resume);
+      formData.append('jobDescription', jobDescription.trim());
       
       const response = await fetch('https://ashhar.app.n8n.cloud/webhook/ats-resume-check', {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          resume: base64Resume,
-          jobDescription: jobDescription.trim(),
-        }),
+        body: formData,
       });
       
       if (!response.ok) {
