@@ -101,7 +101,7 @@ function App() {
       formData.append('resume', base64Resume);
       formData.append('jobDescription', jobDescription.trim());
       
-      const response = await fetch('https://ashhar.app.n8n.cloud/webhook-test/ats-resume-check', {
+      const response = await fetch('https://ashhar.app.n8n.cloud/webhook-test/ats-resume', {
         method: 'POST',
         headers: {"Content-Type": "application/json",
       }, body: JSON.stringify({resume: base64Resume, jobDescription,}),});
