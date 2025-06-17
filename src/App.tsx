@@ -103,8 +103,8 @@ function App() {
       
       const response = await fetch('https://ashhar.app.n8n.cloud/webhook/ats-resume-check', {
         method: 'POST',
-        body: formData,
-      });
+        headers: {"Content-Type": "application/json",
+      }, body: JSON.stringify({resume: base64Resume, jobDescription,}),});
       
       if (!response.ok) {
         throw new Error('Failed to analyze resume. Please try again.');
